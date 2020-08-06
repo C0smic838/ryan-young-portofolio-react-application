@@ -1,26 +1,44 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+import PortfolioSidebarList from "../portfolio/portfolio-sidebar-list";
+import PortfolioForm from "../portfolio/portfolio-form";
+
+
 export default class PortfolioManager extends Component {
     constructor() {
         super();
+
         this.state = {
             portfolioItems: []
-        }
+        };
+
+        this.handleSuccessfullFormSubmission = this.handleSuccessfullFormSubmission.bind(this);
+        this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
     }
     
+    handleSuccessfullFormSubmission(portfolioItem) {
+        this.setState({
+            portfolioItems: [portfolioItem].concat(this.state.portfolioItems)
+        })
+    }
+
+    handleFormSubmissionError(error) {
+        console.log("handleFormSubmissionError", error);
+    }
+
     getPortfolioItems() {
-        axios.get("https://ryanyoung.devcamp.space.portfolio/portfolio_items", {
-            withCredentials: true
-        }
-            .then(response => {
+        axios
+            .get("https://ryanyoung.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc", {
+                withCredentials: true
+            }).then(response => {
                 this.setState({
-                    portfolioItems: [...response.data.portfolio_items]
-                })
+                   portfolioItems: [...response.data.portfolio_items]
+                });
             })
             .catch(error => {
                 console.log("Error in getPortfolioItems", error);
-            })
-        );
+            });
     }
 
     componentDidMount() {
@@ -31,13 +49,15 @@ export default class PortfolioManager extends Component {
         return (
             <div className="portfolio-manager-wrapper">
                 <div className="left-column">
-                    <h1>Form</h1>
+                    <PortfolioForm
+                        handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}
+                        handleFormSubmissionError={this.handleFormSubmissionError}
+                    />
                 </div>
                 <div className="right-column">
-                    <h1>Images</h1>
+                    <PortfolioSidebarList data={this.state.portfolioItems} />
                 </div>
-                
             </div>
-        )
+        );
     }
 }

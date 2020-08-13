@@ -21,7 +21,8 @@ export default class BlogModal extends Component {
             overlay: {
                 backgroundColor: "rgba(1, 1, 1, 0.75)"
             }
-        }
+        };
+        
         this.handleSuccessfullFormSubmission = this.handleSuccessfullFormSubmission.bind(this);
     }
 

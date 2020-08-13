@@ -1,0 +1,17 @@
+.homepage-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .filter-links {
+        display: flex;
+        justify-content: space-around;
+
+        .btn-special {
+            width: 100%;
+
+            &:hover, &:focus, &:active {
+                border-radius: 0px;
+            }
+        }
+    }
+}

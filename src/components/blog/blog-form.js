@@ -25,6 +25,7 @@ export default class BlogForm extends Component {
         this.djsConfig = this.djsConfig.bind(this);
         this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
         this.deleteImage = this.deleteImage.bind(this)
+        
 
         this.featuredImageRef = React.createRef();
     }
@@ -107,7 +108,7 @@ export default class BlogForm extends Component {
             if (this.state.featured_image) {
                 this.featuredImageRef.current.dropzone.removeAllFiles();
             }
-            
+
             this.setState({
                 title: "",
                 blog_status: "",
@@ -115,8 +116,7 @@ export default class BlogForm extends Component {
                 featured_image: "",
             });
             
-            if (this.prop.editMode) {
-                // Update blog detail
+            if (this.props.editMode) {
                 this.props.handleUpdateFormSubmission(
                     response.data.portfolio_blog
                 );

@@ -1,0 +1,11 @@
+.login-form-wrapper {
+    @include input-element();
+    input {
+    border: 1px solid #26bfd4;
+    border-radius: 5px;
+    }
+}
+
+.btn {
+    @include base-btn();
+}

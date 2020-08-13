@@ -1,3 +1,8 @@
 .btn {
     @include base-btn();
 }
+
+.btn-special {
+    @include base-btn();
+    border-radius: 0px;
+}

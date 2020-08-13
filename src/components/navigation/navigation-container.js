@@ -59,7 +59,7 @@ const NavigationComponent = props => {
         </div>
 
         {props.loggedInStatus === "LOGGED_IN" ?
-          (dynamicLink("/portfolio-manager", "Porfolio Manager")) : null}
+          (dynamicLink("/portfolio-manager", "Portfolio Manager")) : null}
       </div >
       <div className="right-side">
         Ryan Young
